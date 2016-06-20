@@ -1,3 +1,6 @@
+rename.rb
+make_into_one.rb
+
 *.gem
 *.rbc
 /.config

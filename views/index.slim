@@ -1,5 +1,3 @@
-/ colors: ['#434348', '#f7a35c', '#90ed7d'],
-
 div class='row'
   div class='col-md-6'
     div id='guber-party'
@@ -7,82 +5,27 @@ div class='row'
     div id='legislature-party'
 
 div class='row'
+  div class='col-md-3'
+  div class='col-md-6'
+    div id='state-senate'
+  div class='col-md-3'
+
+div class='row'
 
 javascript:
     var state_guber = JSON.parse("#{state_guber}".replace(/&quot;/g, '"').replace(/amp;/g, '')),
         state_legislature = JSON.parse("#{state_legislature}".replace(/&quot;/g, '"').replace(/amp;/g, '')),
-        ng_all = JSON.parse("#{ng_all}".replace(/&quot;/g, '"').replace(/amp;/g, ''));
+        federal_senators = JSON.parse("#{federal_senators}".replace(/&quot;/g, '"').replace(/amp;/g, '')),
+        ng_all = JSON.parse("#{ng_all}".replace(/&quot;/g, '"').replace(/amp;/g, '')),
+        ng_all_districts = JSON.parse("#{ng_all_districts}".replace(/&quot;/g, '"').replace(/amp;/g, '')),
+        ng_all_drill = JSON.parse("#{ng_all}".replace(/&quot;/g, '"').replace(/amp;/g, ''));
 
-    $(function () {
-        $('#guber-party').highcharts('Map', {
-            chart: {
-                spacingBottom: 20
-            },
-            title : {
-                text : 'Executive control of the states'
-            },
-            subtitle : {
-                text : 'As of May 2016'
-            },
-            legend: {
-                enabled: true
-            },
-            plotOptions: {
-                map: {
-                    allAreas: false,
-                    joinBy: ['name', 'code'],
-                    dataLabels: {
-                        enabled: true,
-                        color: '#FFFFFF',
-                        format: '{point.code}',
-                        style: {
-                            fontWeight: 'bold'
-                        }
-                    },
-                    mapData: ng_all,
-                    tooltip: {
-                        headerFormat: '',
-                        pointFormat: '{point.name}: <b>{point.governor} ({series.name})</b>'
-                    }
-                }
-            },
-            series : state_guber
-        });
-    });
 
-    $(function () {
-        $('#legislature-party').highcharts('Map', {
-            chart: {
-                spacingBottom: 20
-            },
-            title : {
-                text : 'Legislative control of the states (Simple majority rule)'
-            },
-            subtitle : {
-                text : 'As of May 2016'
-            },
-            legend: {
-                enabled: true
-            },
-            plotOptions: {
-                map: {
-                    allAreas: false,
-                    joinBy: ['name', 'code'],
-                    dataLabels: {
-                        enabled: true,
-                        color: '#FFFFFF',
-                        format: '{point.code}',
-                        style: {
-                            fontWeight: 'bold'
-                        }
-                    },
-                    mapData: ng_all,
-                    tooltip: {
-                        headerFormat: '',
-                        pointFormat: '{point.name}: <b>{series.name}</b>'
-                    }
-                }
-            },
-            series : state_legislature
-        });
-    });
+script src='senators.js'
+script src='guber_state_legislature.js'
+
+/ script src='drilldown.js'
+
+javascript:
+    senators('state-senate', 'Federal Senate', federal_senators);
+    // nppDrilldown('state-senate', 'Federal Senate (%)', federal_senators, state_guber);
