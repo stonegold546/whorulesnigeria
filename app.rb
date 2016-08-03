@@ -98,4 +98,8 @@ class WhoRulesNigeria < Sinatra::Base
       ng_all_districts: ng_all_districts
     }
   end
+
+  get '/keybase.txt' do
+    File.read(File.join('public', 'keybase.txt'))
+  end
 end
